@@ -91,7 +91,7 @@ class _IntroPageState extends State<IntroPage> {
               },
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.black54,
                     borderRadius: BorderRadius.all(Radius.circular(50.0))),
                 width: MediaQuery.of(context).size.width * .85,
                 height: 60.0,
@@ -99,7 +99,7 @@ class _IntroPageState extends State<IntroPage> {
                   child: Text(
                     "GET STARTED",
                     style: TextStyle(
-                        color: Color(0XFF8d12fe),
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0),
                   ),
