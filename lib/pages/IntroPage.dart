@@ -1,4 +1,4 @@
-import 'package:covid_19_dashboard/pages/homePage.dart';
+import 'package:covid_19_dashboard/pages/StatPage.dart';
 import 'package:flutter/material.dart';
 
 class IntroPage extends StatefulWidget {
@@ -85,7 +85,7 @@ class _IntroPageState extends State<IntroPage> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => HomePage(),
+                    builder: (_) => StatPage(),
                   ),
                 );
               },
