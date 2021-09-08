@@ -68,6 +68,7 @@ class StatusPanel extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Icon(Icons.local_hospital),
           Text(
             title,
             style: TextStyle(

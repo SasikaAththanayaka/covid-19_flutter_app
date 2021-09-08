@@ -1,4 +1,5 @@
-import 'package:covid_19_dashboard/pages/StatPage.dart';
+//import 'package:covid_19_dashboard/pages/StatPage.dart';
+import 'package:covid_19_dashboard/pages/homePage.dart';
 import 'package:flutter/material.dart';
 
 class IntroPage extends StatefulWidget {
@@ -16,8 +17,8 @@ class _IntroPageState extends State<IntroPage> {
         decoration: BoxDecoration(
             gradient: LinearGradient(
           colors: [
-            Color(0XFF8d12fe),
-            Color(0XFF8d12fe).withOpacity(.1),
+            Colors.blue,
+            Colors.blue.withOpacity(.5),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -72,26 +73,29 @@ class _IntroPageState extends State<IntroPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
-              "is an infectianus diseases caused by a new\nvirus.",
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.white,
-                height: 1.5,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: Text(
+                "is an infectianus diseases caused by a new\nvirus.",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                  height: 1.5,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => StatPage(),
+                    builder: (_) => HomePage(),
                   ),
                 );
               },
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.black54,
+                    color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(50.0))),
                 width: MediaQuery.of(context).size.width * .85,
                 height: 60.0,
@@ -99,7 +103,7 @@ class _IntroPageState extends State<IntroPage> {
                   child: Text(
                     "GET STARTED",
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.blue,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0),
                   ),
