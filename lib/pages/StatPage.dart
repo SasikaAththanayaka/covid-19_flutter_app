@@ -32,7 +32,7 @@ class _StatPageState extends State<StatPage> {
       length: 2,
       child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0XFF8d12fe),
+            backgroundColor: Colors.blue,
             //centerTitle: false,
             title: Padding(
               padding: const EdgeInsets.only(top: 20.0, left: 20.0),

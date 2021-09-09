@@ -1,4 +1,7 @@
+import 'package:covid_19_dashboard/panels/WorldPieChart.dart';
 import 'package:flutter/material.dart';
+
+import 'LocalPieChart.dart';
 
 class WorldPanel extends StatelessWidget {
   final Map data;
@@ -6,42 +9,54 @@ class WorldPanel extends StatelessWidget {
   const WorldPanel({Key key, this.data}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GridView(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, childAspectRatio: 2),
-        children: <Widget>[
-          StatusPanel(
-            title: "CONFORMED",
-            panelColor: Colors.red,
-            textColor: Colors.white,
-            count: data["data"]["global_total_cases"].toString(),
+    return Column(
+      children: [
+        Container(
+          child: GridView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, childAspectRatio: 2),
+            children: <Widget>[
+              StatusPanel(
+                title: "CONFORMED",
+                panelColor: Colors.red,
+                textColor: Colors.white,
+                count: data["data"]["global_total_cases"].toString(),
+              ),
+              StatusPanel(
+                title: "ACTIVE",
+                panelColor: Colors.blue,
+                textColor: Colors.white,
+                count: (data["data"]["global_total_cases"] -
+                        (data["data"]["global_recovered"]) -
+                        (data["data"]["global_deaths"]))
+                    .toString(),
+              ),
+              StatusPanel(
+                title: "RECOVERD",
+                panelColor: Colors.green,
+                textColor: Colors.white,
+                count: data["data"]["global_recovered"].toString(),
+              ),
+              StatusPanel(
+                title: "DEATHS",
+                panelColor: Colors.red,
+                textColor: Colors.white,
+                count: data["data"]["global_deaths"].toString(),
+              ),
+            ],
           ),
-          StatusPanel(
-            title: "ACTIVE",
-            panelColor: Colors.blue,
-            textColor: Colors.white,
-            count: (data["data"]["global_total_cases"] -
-                    (data["data"]["global_recovered"]) -
-                    (data["data"]["global_deaths"]))
-                .toString(),
-          ),
-          StatusPanel(
-            title: "RECOVERD",
-            panelColor: Colors.green,
-            textColor: Colors.white,
-            count: data["data"]["global_recovered"].toString(),
-          ),
-          StatusPanel(
-            title: "DEATHS",
-            panelColor: Colors.red,
-            textColor: Colors.white,
-            count: data["data"]["global_deaths"].toString(),
-          ),
-        ],
-      ),
+        ),
+        Container(
+          height: 400.0,
+          child: data == null
+              ? CircularProgressIndicator()
+              : WorldPieChart(
+                  data: data,
+                ),
+        ),
+      ],
     );
   }
 }

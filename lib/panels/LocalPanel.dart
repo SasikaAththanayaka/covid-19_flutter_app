@@ -1,3 +1,4 @@
+import 'package:covid_19_dashboard/panels/LocalPieChart.dart';
 import 'package:flutter/material.dart';
 
 class LocalPanel extends StatelessWidget {
@@ -6,42 +7,54 @@ class LocalPanel extends StatelessWidget {
   const LocalPanel({Key key, this.data}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GridView(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, childAspectRatio: 2),
-        children: <Widget>[
-          StatusPanel(
-            title: "CONFORMED",
-            panelColor: Colors.red,
-            textColor: Colors.white,
-            count: data["data"]["local_total_cases"].toString(),
+    return Column(
+      children: [
+        Container(
+          child: GridView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, childAspectRatio: 2),
+            children: <Widget>[
+              StatusPanel(
+                title: "CONFORMED",
+                panelColor: Colors.red,
+                textColor: Colors.white,
+                count: data["data"]["local_total_cases"].toString(),
+              ),
+              StatusPanel(
+                title: "ACTIVE",
+                panelColor: Colors.blue,
+                textColor: Colors.white,
+                count: (data["data"]["local_total_cases"] -
+                        (data["data"]["local_recovered"]) -
+                        (data["data"]["local_deaths"]))
+                    .toString(),
+              ),
+              StatusPanel(
+                title: "RECOVERD",
+                panelColor: Colors.green,
+                textColor: Colors.white,
+                count: data["data"]["local_recovered"].toString(),
+              ),
+              StatusPanel(
+                title: "DEATHS",
+                panelColor: Colors.red,
+                textColor: Colors.white,
+                count: data["data"]["local_deaths"].toString(),
+              ),
+            ],
           ),
-          StatusPanel(
-            title: "ACTIVE",
-            panelColor: Colors.blue,
-            textColor: Colors.white,
-            count: (data["data"]["local_total_cases"] -
-                    (data["data"]["local_recovered"]) -
-                    (data["data"]["local_deaths"]))
-                .toString(),
-          ),
-          StatusPanel(
-            title: "RECOVERD",
-            panelColor: Colors.green,
-            textColor: Colors.white,
-            count: data["data"]["local_recovered"].toString(),
-          ),
-          StatusPanel(
-            title: "DEATHS",
-            panelColor: Colors.red,
-            textColor: Colors.white,
-            count: data["data"]["local_deaths"].toString(),
-          ),
-        ],
-      ),
+        ),
+        Container(
+          height: 400.0,
+          child: data == null
+              ? CircularProgressIndicator()
+              : LocalPieChart(
+                  data: data,
+                ),
+        ),
+      ],
     );
   }
 }
@@ -68,7 +81,6 @@ class StatusPanel extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(Icons.local_hospital),
           Text(
             title,
             style: TextStyle(
