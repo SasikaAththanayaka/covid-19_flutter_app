@@ -1,7 +1,7 @@
 import 'package:covid_19_dashboard/panels/WorldPieChart.dart';
 import 'package:flutter/material.dart';
 
-import 'LocalPieChart.dart';
+//import 'LocalPieChart.dart';
 
 class WorldPanel extends StatelessWidget {
   final Map data;
@@ -12,6 +12,15 @@ class WorldPanel extends StatelessWidget {
     return Column(
       children: [
         Container(
+          height: MediaQuery.of(context).size.height * .528,
+          child: data == null
+              ? CircularProgressIndicator()
+              : WorldPieChart(
+                  data: data,
+                ),
+        ),
+        Container(
+          color: Colors.black26,
           child: GridView(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
@@ -20,7 +29,7 @@ class WorldPanel extends StatelessWidget {
             children: <Widget>[
               StatusPanel(
                 title: "CONFORMED",
-                panelColor: Colors.red,
+                panelColor: Colors.amber,
                 textColor: Colors.white,
                 count: data["data"]["global_total_cases"].toString(),
               ),
@@ -47,14 +56,6 @@ class WorldPanel extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        Container(
-          height: 400.0,
-          child: data == null
-              ? CircularProgressIndicator()
-              : WorldPieChart(
-                  data: data,
-                ),
         ),
       ],
     );

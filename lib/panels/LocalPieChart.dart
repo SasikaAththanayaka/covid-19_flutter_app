@@ -29,8 +29,18 @@ class _LocalPieChartState extends State<LocalPieChart> {
   Widget build(BuildContext context) {
     return Container(
       child: SfCircularChart(
+        backgroundColor: Colors.black26,
+        palette: <Color>[
+          Colors.amber,
+          Colors.blueAccent,
+          Colors.green,
+          Colors.redAccent,
+        ],
         legend:
             Legend(isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
+        title: ChartTitle(
+            text: "LOCAL STATS\n last update :" +
+                widget.data["data"]["update_date_time"]),
         tooltipBehavior: _tooltipBehavior,
         series: <CircularSeries>[
           PieSeries<Data, String>(

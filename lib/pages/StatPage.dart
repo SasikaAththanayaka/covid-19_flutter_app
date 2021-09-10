@@ -37,7 +37,7 @@ class _StatPageState extends State<StatPage> {
             title: Padding(
               padding: const EdgeInsets.only(top: 20.0, left: 20.0),
               child: Text(
-                "STATISTICS",
+                "COVID-19 STATS",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
               ),
             ),

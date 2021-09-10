@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 },
-                child: Text("STATISTICS",
+                child: Text("COVID-19 STATS",
                     style: TextStyle(
                       color: Colors.white,
                     )),

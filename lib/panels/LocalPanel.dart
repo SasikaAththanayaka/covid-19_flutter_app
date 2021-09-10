@@ -10,6 +10,15 @@ class LocalPanel extends StatelessWidget {
     return Column(
       children: [
         Container(
+          height: MediaQuery.of(context).size.height * .528,
+          child: data == null
+              ? CircularProgressIndicator()
+              : LocalPieChart(
+                  data: data,
+                ),
+        ),
+        Container(
+          color: Colors.black26,
           child: GridView(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
@@ -18,7 +27,7 @@ class LocalPanel extends StatelessWidget {
             children: <Widget>[
               StatusPanel(
                 title: "CONFORMED",
-                panelColor: Colors.red,
+                panelColor: Colors.amber,
                 textColor: Colors.white,
                 count: data["data"]["local_total_cases"].toString(),
               ),
@@ -45,14 +54,6 @@ class LocalPanel extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        Container(
-          height: 400.0,
-          child: data == null
-              ? CircularProgressIndicator()
-              : LocalPieChart(
-                  data: data,
-                ),
         ),
       ],
     );
